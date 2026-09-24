@@ -38,7 +38,9 @@ func setupTransactionUseCase(db *sql.DB, producer kafka.KafkaProducer) usecase.U
 
 func setupKafkaProducer() kafka.KafkaProducer {
 	producer := kafka.NewKafkaProducer()
-	producer.SetupProducer(os.Getenv("KafkaBootstrapServers"))
+	if err := producer.SetupProducer(os.Getenv("KafkaBootstrapServers")); err != nil {
+		log.Fatal("error creating Kafka producer: ", err)
+	}
 	return producer
 }
 
