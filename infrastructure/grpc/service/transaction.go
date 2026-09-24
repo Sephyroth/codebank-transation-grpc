@@ -22,7 +22,7 @@ func NewTransactionService() *TransactionService {
 func (t *TransactionService) Payment(ctx context.Context, in *pb.PaymentRequest) (*empty.Empty, error) {
 	transactionDto := dto.Transaction{
 		Name: in.GetCreditCard().GetName(),
-		Number: in.CreditCard.GetNumber(),
+		Number: in.GetCreditCard().GetNumber(),
 		ExpirationMonth: in.GetCreditCard().GetExpirationMonth(),
 		ExpirationYear: in.GetCreditCard().GetExpirationYear(),
 		CVV: in.GetCreditCard().GetCvv(),
